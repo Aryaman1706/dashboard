@@ -1,0 +1,10 @@
+.news_item_container {
+  background-color: whitesmoke;
+  margin-bottom: 2vh;
+  width: 100%;
+}
+
+.news_item_id {
+  color: grey;
+  font-weight: bold;
+}
