@@ -1,0 +1,11 @@
+.users_table_row {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  padding: 5px;
+}
+
+.users_table_row_cell {
+  width: 25vw;
+  overflow-wrap: break-word;
+}

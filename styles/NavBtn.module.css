@@ -1,0 +1,11 @@
+.nav_btn {
+  width: 5vw;
+  text-align: center;
+  height: 100%;
+  padding: 5px;
+}
+
+.nav_btn_active {
+  background-color: lightgreen;
+  color: white;
+}
