@@ -20,7 +20,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
     const data = await response.json();
 
-    const users = data.map((obj: TDataItem) => ({
+    const users: TUser[] = data.map((obj: TDataItem) => ({
       id: obj.id,
       name: obj.name,
       email: obj.email,

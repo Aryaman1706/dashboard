@@ -1,0 +1,25 @@
+.search_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  width: 100%;
+  padding: 5px 15px 5px 15px;
+}
+
+.search_text {
+  margin: 0;
+}
+
+.search_input {
+  width: 50vw;
+  height: 5vh;
+}
+
+.clear_btn {
+  width: 5vw;
+  height: 5vh;
+  background-color: crimson;
+  color: white;
+  border: 0;
+  cursor: pointer;
+}

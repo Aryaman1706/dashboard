@@ -2,10 +2,17 @@
   display: flex;
   justify-content: space-around;
   align-items: baseline;
-  padding: 5px;
+  padding: 2vh;
+  cursor: pointer;
+  margin-bottom: 2vh;
+  background-color: whitesmoke;
 }
 
 .users_table_row_cell {
   width: 25vw;
   overflow-wrap: break-word;
+}
+
+.bold {
+  font-weight: bolder;
 }

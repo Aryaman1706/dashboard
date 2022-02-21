@@ -5,10 +5,7 @@ export enum Status {
   failed = "failed",
 }
 
-export type TProps = {
-  url: string;
-  successCb?: (data?: any) => void;
-  failureCb?: (error?: string) => void;
-};
+export type TSuccessCb = (data?: any) => void;
+export type TFailureCb = (error?: string) => void;
 
 export type TData = any;

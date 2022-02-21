@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Status, TData, TProps } from "./useFetch.types";
+import { Status, TData, TSuccessCb, TFailureCb } from "./useFetch.types";
 
-const useFetch = <T extends TProps>({ url, successCb, failureCb }: T) => {
-  const [data, setData] = useState<TData>([]);
+const useFetch = (successCb?: TSuccessCb, failureCb?: TFailureCb) => {
+  const [data, setData] = useState<TData>(null);
   const [error, setError] = useState<string>("");
   const [status, setStatus] = useState<Status>(Status.idle);
 
@@ -16,7 +16,7 @@ const useFetch = <T extends TProps>({ url, successCb, failureCb }: T) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [status]);
 
-  const get = async () => {
+  const get = async (url: string) => {
     try {
       setStatus(Status.loading);
       const response = await fetch(url);
@@ -32,7 +32,13 @@ const useFetch = <T extends TProps>({ url, successCb, failureCb }: T) => {
     }
   };
 
-  return [get, data, error, status] as const;
+  const reset = () => {
+    setData(null);
+    setError("");
+    setStatus(Status.idle);
+  };
+
+  return [get, reset, data, error, status] as const;
 };
 
 export default useFetch;

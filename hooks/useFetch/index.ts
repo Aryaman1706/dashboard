@@ -1,5 +1,6 @@
 import useFetch from "./useFetch";
-import { Status, TProps, TData } from "./useFetch.types";
+import { Status, TData } from "./useFetch.types";
 
-export type { Status, TProps, TData };
+export { Status };
+export type { TData };
 export default useFetch;
