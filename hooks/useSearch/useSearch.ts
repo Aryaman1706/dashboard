@@ -39,7 +39,7 @@ const useSearch = <T extends any[]>(
     200
   );
 
-  return [changeHandler, state] as const;
+  return [changeHandler, state, setState] as const;
 };
 
 export default useSearch;

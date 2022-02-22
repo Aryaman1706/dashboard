@@ -5,7 +5,7 @@ export enum Status {
   failed = "failed",
 }
 
-export type TSuccessCb = (data?: any) => void;
-export type TFailureCb = (error?: string) => void;
+export type TSuccessCb = (data: any) => void;
+export type TFailureCb = (error: string) => void;
 
 export type TData = any;
