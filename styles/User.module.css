@@ -1,0 +1,16 @@
+.user_container {
+  padding: 3vh;
+  margin: 2vh 2vw 2vh 2vw;
+  background-color: whitesmoke;
+  border-radius: 12px;
+}
+
+.user_id {
+  color: lightgray;
+  font-weight: bold;
+}
+
+.user_heading {
+  font-weight: bold;
+  color: skyblue;
+}

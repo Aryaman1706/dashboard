@@ -4,6 +4,7 @@ import useFetch, { Status } from "../../hooks/useFetch";
 import Row from "./UsersTableRow";
 import useSearch from "../../hooks/useSearch";
 import UserSearch from "./UserSearch";
+import User from "./User";
 
 export type Props = {
   users: TUser[];
@@ -51,7 +52,7 @@ const UsersTable: NextComponentType<NextPageContext, {}, Props> = ({
     }
 
     if (status === Status.success) {
-      return <code>{JSON.stringify(selectUser)}</code>;
+      return <User user={selectUser} />;
     }
 
     if (status === Status.failed) {
