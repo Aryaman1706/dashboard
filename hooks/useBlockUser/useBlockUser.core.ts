@@ -1,33 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Prefix } from "../../constants/prefix";
 
 const useBlockUser = (time: number) => {
   const [timeouts, setTimeouts] = useState<{
     [k: number]: NodeJS.Timeout | undefined;
   }>({});
-
-  const cleanUp = (e: BeforeUnloadEvent) => {
-    e.preventDefault();
-    Object.keys(timeouts).forEach((id) => {
-      window.localStorage.removeItem(`${Prefix.BLOCKED_USER}_${id}`);
-      const timeout = timeouts[Number(id)];
-      timeout && clearTimeout(timeout);
-    });
-
-    setTimeouts({});
-
-    e.returnValue = "Are you sure?";
-  };
-
-  useEffect(() => {
-    window.addEventListener("beforeunload", cleanUp);
-
-    return () => {
-      window.removeEventListener("beforeunload", cleanUp);
-    };
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const unblock = (id: number, forced: boolean = false, cb?: () => void) => {
     window.localStorage.removeItem(`${Prefix.BLOCKED_USER}_${id}`);

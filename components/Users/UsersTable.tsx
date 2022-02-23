@@ -30,7 +30,7 @@ const UsersTable: NextComponentType<NextPageContext, {}, Props> = ({
 }) => {
   const [changeHandler, state, setState] = useSearch<TUser[]>(users, filter);
   const [get, reset, selectUser, _, status] = useFetch();
-  const [block, unblock] = useBlockUserCore(5 * 1000);
+  const [block, unblock] = useBlockUserCore(5 * 60 * 1000);
 
   const clickHandler = (id: number) => {
     get(`https://jsonplaceholder.typicode.com/users/${id}`);

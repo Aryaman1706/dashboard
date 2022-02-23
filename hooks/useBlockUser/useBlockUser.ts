@@ -1,5 +1,4 @@
-import { ChangeEventHandler, useState, useEffect } from "react";
-import { Prefix } from "../../constants/prefix";
+import { ChangeEventHandler, useState } from "react";
 
 const useBlockUser = (
   initialState: boolean,
@@ -12,18 +11,6 @@ const useBlockUser = (
   unblock: (id: number, forced?: boolean, cb?: () => void) => void
 ) => {
   const [blocked, setBlocked] = useState<boolean>(initialState);
-
-  useEffect(() => {
-    const isBlocked = !!window.localStorage.getItem(
-      `${Prefix.BLOCKED_USER}_${id}`
-    );
-
-    if (isBlocked) {
-      unblockUser();
-    }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const blockedCb = () => {
     setBlocked(true);
