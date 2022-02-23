@@ -23,6 +23,9 @@ const TopUsers: NextPage = () => {
           name: obj.name,
           email: obj.email,
           topUser: isTopUser,
+          blocked: !!window.localStorage.getItem(
+            `${Prefix.BLOCKED_USER}_${obj.id}`
+          ),
         });
       }
     });
