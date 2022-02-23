@@ -1,21 +1,19 @@
 .navbar_container {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: baseline;
   width: 100%;
   top: 0;
   position: sticky;
-  margin: 5px 0.75% 5px 0.75%;
-  height: 5vh;
+  padding: 5px 0.75% 5px 0.75%;
+  background-color: whitesmoke;
 }
 
 .nav_btns_container {
   display: flex;
   justify-content: flex-start;
   align-items: baseline;
-  width: 75%;
   height: 100%;
-  background-color: whitesmoke;
 }
 
 .drawer_btn_container {

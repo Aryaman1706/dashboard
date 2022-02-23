@@ -1,11 +1,13 @@
 .nav_btn {
-  width: 5vw;
   text-align: center;
   height: 100%;
   padding: 5px;
+  margin: 1vh;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
 }
 
 .nav_btn_active {
-  background-color: lightgreen;
-  color: white;
+  border-bottom: 2px solid lightgreen;
 }

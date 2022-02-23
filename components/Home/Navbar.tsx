@@ -7,11 +7,11 @@ const Navbar: NextComponentType = () => {
     <>
       <div className={styles.navbar_container}>
         <div className={styles.nav_btns_container}>
-          <NavBtn text="Home" />
-          <NavBtn text="Users" />
-          <NavBtn text="News" />
+          <NavBtn text="Users" route="/users" />
+          <NavBtn text="News" route="/news" />
+          <NavBtn text="Top Users" route="/topusers" />
         </div>
-        <div className={styles.drawer_btn_container}>
+        <div>
           <p>ham</p>
         </div>
       </div>
