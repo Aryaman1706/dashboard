@@ -1,0 +1,23 @@
+.drawer {
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  width: 18%;
+  background-color: whitesmoke;
+  padding: 2vh;
+}
+
+.close_btn_container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav_btn_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: baseline;
+}

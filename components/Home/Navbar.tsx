@@ -1,8 +1,15 @@
-import type { NextComponentType } from "next";
-import styles from "../../styles/Navbar.module.css";
+import type { NextComponentType, NextPageContext } from "next";
 import NavBtn from "./NavBtn";
+import styles from "../../styles/Navbar.module.css";
+import navbtnStyles from "../../styles/NavBtn.module.css";
 
-const Navbar: NextComponentType = () => {
+type TProps = {
+  toggleDrawer: () => void;
+};
+
+const Navbar: NextComponentType<NextPageContext, {}, TProps> = ({
+  toggleDrawer,
+}) => {
   return (
     <>
       <div className={styles.navbar_container}>
@@ -12,7 +19,12 @@ const Navbar: NextComponentType = () => {
           <NavBtn text="Top Users" route="/topusers" />
         </div>
         <div>
-          <p>ham</p>
+          <button
+            className={navbtnStyles.nav_btn}
+            onClick={() => toggleDrawer()}
+          >
+            Open
+          </button>
         </div>
       </div>
     </>
