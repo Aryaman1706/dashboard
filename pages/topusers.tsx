@@ -4,6 +4,7 @@ import type { TDataItem } from "../types/usersPage.types";
 import { useCallback, useEffect, useState } from "react";
 import useFetch, { Status } from "../hooks/useFetch";
 import UsersTable from "../components/Users/UsersTable";
+import { Prefix } from "../constants/prefix";
 
 const TopUsers: NextPage = () => {
   const [users, setUsers] = useState<TUser[]>([]);
@@ -12,7 +13,9 @@ const TopUsers: NextPage = () => {
     const result: TUser[] = [];
 
     data.forEach((obj) => {
-      const isTopUser = !!window.localStorage.getItem(`top_user_${obj.id}`);
+      const isTopUser = !!window.localStorage.getItem(
+        `${Prefix.TOP_USER}_${obj.id}`
+      );
 
       if (isTopUser) {
         result.push({

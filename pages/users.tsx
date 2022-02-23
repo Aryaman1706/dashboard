@@ -25,6 +25,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       name: obj.name,
       email: obj.email,
       topUser: false,
+      blocked: false,
     }));
 
     return { props: { users } };

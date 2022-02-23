@@ -3,4 +3,5 @@ export type TUser = {
   email: string;
   id: number;
   topUser: boolean;
+  blocked: boolean;
 };

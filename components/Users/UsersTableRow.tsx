@@ -1,7 +1,9 @@
 import type { NextComponentType, NextPageContext } from "next";
 import type { TUser } from "./types";
-import { ChangeEventHandler, Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import styles from "../../styles/UsersTableRow.module.css";
+import useTopUser from "../../hooks/useTopUser";
+import { useBlockUser } from "../../hooks/useBlockUser";
 
 export type Props = {
   user: TUser;
@@ -9,6 +11,8 @@ export type Props = {
   header?: boolean;
   removeUser?: boolean;
   setUsers?: Dispatch<SetStateAction<TUser[]>>;
+  block: (id: number, blockedCb?: () => void, unblockedCb?: () => void) => void;
+  unblock: (id: number, forced?: boolean, cb?: () => void) => void;
 };
 
 const UsersTable: NextComponentType<NextPageContext, {}, Props> = ({
@@ -17,31 +21,21 @@ const UsersTable: NextComponentType<NextPageContext, {}, Props> = ({
   header,
   removeUser,
   setUsers,
+  block,
+  unblock,
 }) => {
-  const { id, name, email, topUser } = user;
-  const [top, setTop] = useState<boolean>(topUser);
+  const { id, name, email, topUser, blocked } = user;
+  const [top, topCheckHandler] = useTopUser(topUser, id, removeUser, setUsers);
+  const [blockedUser, blockCheckHandler] = useBlockUser(
+    blocked,
+    id,
+    block,
+    unblock
+  );
 
   const cellClassname = header
     ? `${styles.users_table_row_cell} ${styles.bold}`
     : styles.users_table_row_cell;
-
-  const checkedHandler: ChangeEventHandler<HTMLInputElement> = (_) => {
-    if (top) {
-      window.localStorage.removeItem(`top_user_${id}`);
-
-      removeUser &&
-        setUsers &&
-        setUsers((prev) => {
-          const newUsers = prev.filter((user) => user.id !== id);
-          console.log("SetUsers", newUsers);
-          return newUsers;
-        });
-    } else {
-      window.localStorage.setItem(`top_user_${id}`, "true");
-    }
-
-    setTop((prev) => !prev);
-  };
 
   return (
     <div className={styles.users_table_row}>
@@ -63,15 +57,27 @@ const UsersTable: NextComponentType<NextPageContext, {}, Props> = ({
         {email}
       </div>
       {header ? (
-        <div className={cellClassname}>{topUser}</div>
+        <>
+          <div className={cellClassname}>{topUser}</div>
+          <div className={cellClassname}>{blocked}</div>
+        </>
       ) : (
-        <div className={cellClassname}>
-          <input
-            type="checkbox"
-            checked={top}
-            onChange={(e) => checkedHandler(e)}
-          />
-        </div>
+        <>
+          <div className={cellClassname}>
+            <input
+              type="checkbox"
+              checked={top}
+              onChange={(e) => topCheckHandler(e)}
+            />
+          </div>
+          <div className={cellClassname}>
+            <input
+              type="checkbox"
+              checked={blockedUser}
+              onChange={(e) => blockCheckHandler(e)}
+            />
+          </div>
+        </>
       )}
     </div>
   );

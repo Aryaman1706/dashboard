@@ -1,11 +1,11 @@
 import type { NextComponentType, NextPageContext } from "next";
 import type { TUser } from "./types";
-import type { Dispatch, SetStateAction } from "react";
 import useFetch, { Status } from "../../hooks/useFetch";
 import Row from "./UsersTableRow";
 import useSearch from "../../hooks/useSearch";
 import UserSearch from "./UserSearch";
 import User from "./User";
+import { useBlockUserCore } from "../../hooks/useBlockUser";
 
 export type Props = {
   users: TUser[];
@@ -29,7 +29,8 @@ const UsersTable: NextComponentType<NextPageContext, {}, Props> = ({
   removeUser,
 }) => {
   const [changeHandler, state, setState] = useSearch<TUser[]>(users, filter);
-  const [get, reset, selectUser, error, status] = useFetch();
+  const [get, reset, selectUser, _, status] = useFetch();
+  const [block, unblock] = useBlockUserCore(5 * 1000);
 
   const clickHandler = (id: number) => {
     get(`https://jsonplaceholder.typicode.com/users/${id}`);
@@ -48,6 +49,8 @@ const UsersTable: NextComponentType<NextPageContext, {}, Props> = ({
               email: "User Email",
               // @ts-expect-error
               topUser: "Top User",
+              // @ts-expect-error
+              blocked: "Blocked",
             }}
           />
           {state.map((user) => (
@@ -57,6 +60,8 @@ const UsersTable: NextComponentType<NextPageContext, {}, Props> = ({
               clickHandler={clickHandler}
               removeUser={removeUser}
               setUsers={setState}
+              block={block}
+              unblock={unblock}
             />
           ))}
         </>
